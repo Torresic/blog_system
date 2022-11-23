@@ -1,5 +1,8 @@
 export const CustomTheme = {
     colors: {
+      primary: "#030C26",
+      secondary: "#4C5E92",
+      secondaryDarker: "#344470",
       black: "#000000",
       white: "#FFFFFF",
       transparent: "rgba(255,255,255, 0)"
