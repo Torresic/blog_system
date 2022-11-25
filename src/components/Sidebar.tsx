@@ -5,10 +5,11 @@ export const Sidebar = () => {
     <SidebarContainer>
       <SidebarUserContainer>
         <SidebarUserImg
-          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80"
+          src="https://plus.unsplash.com/premium_photo-1663054609755-5be53e6d599a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
           alt=""
         />
       </SidebarUserContainer>
+      <Divider />
     </SidebarContainer>
   );
 };
@@ -19,16 +20,19 @@ const SidebarContainer = styled.div`
   padding: ${(p) => `${p.theme.spacing.spacing16} 0`};
 
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
   background: ${(p) => p.theme.colors.primary};
 `;
 
+// User profile information
+
 const SidebarUserContainer = styled.div`
   position: relative;
   overflow: hidden;
-  width: 75px;
-  height: 75px;
+  width: min(80%, 75px);
+  aspect-ratio : 1 / 1;
   cursor: pointer;
 
   border-radius: ${(p) => p.theme.borderRadius.rounded3xl};
@@ -40,7 +44,10 @@ const SidebarUserContainer = styled.div`
     position: absolute;
     left: 0;
     top: 0;
-    background: ${p => p.theme.colors.primary};
+    width: 75px;
+    height: 75px;
+    background: ${(p) => p.theme.colors.primary};
+    border-radius: ${(p) => p.theme.borderRadius.rounded3xl};
     opacity: 0;
     transition: 0.5s ease all;
   }
@@ -55,6 +62,18 @@ const SidebarUserContainer = styled.div`
 `;
 
 const SidebarUserImg = styled.img`
+  height: 100%;
   transition: 0.5s ease all;
   object-fit: cover;
 `;
+
+// Divider
+const Divider = styled.hr`
+  height: 1px;
+  width: 80%;
+  border: none;
+  margin: ${p => p.theme.spacing.spacing24};
+  background-color: ${p => p.theme.colors.secondaryDarker};
+`;
+
+// Navigation links
