@@ -1,11 +1,8 @@
 import styled from "styled-components";
+import { Sidebar } from "../components/Sidebar";
 
 export const Home = () => {
     return (
-        <MyTitle>Hello theme</MyTitle>
+      <Sidebar />
     )
 }
-
-const MyTitle = styled.h1`
-  color: ${(p) => p.theme.colors.black};
-`;
