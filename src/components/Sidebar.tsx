@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { AiOutlineLogout } from "react-icons/ai";
+import { SidebarLink } from "./SidebarLink";
 
 export const Sidebar = () => {
   return (
@@ -10,6 +12,13 @@ export const Sidebar = () => {
         />
       </SidebarUserContainer>
       <Divider />
+      <NavigationContainer>
+        <SidebarLink name="home" active={false} label="Dashboard" />
+        <LogoutContainer>
+          <Divider />
+          <AiOutlineLogout />
+        </LogoutContainer>
+      </NavigationContainer>
     </SidebarContainer>
   );
 };
@@ -26,13 +35,31 @@ const SidebarContainer = styled.div`
   background: ${(p) => p.theme.colors.primary};
 `;
 
+const NavigationContainer = styled.nav`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+  justify-content: space-between;
+  flex-direction: column;
+`;
+
+const LogoutContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  color: ${p => p.theme.colors.secondary};
+  font-size: 48px;
+`;
+
 // User profile information
 
 const SidebarUserContainer = styled.div`
   position: relative;
   overflow: hidden;
   width: min(80%, 75px);
-  aspect-ratio : 1 / 1;
+  aspect-ratio: 1 / 1;
   cursor: pointer;
 
   border-radius: ${(p) => p.theme.borderRadius.rounded3xl};
@@ -72,8 +99,8 @@ const Divider = styled.hr`
   height: 1px;
   width: 80%;
   border: none;
-  margin: ${p => p.theme.spacing.spacing24};
-  background-color: ${p => p.theme.colors.secondaryDarker};
+  margin: ${(p) => p.theme.spacing.spacing24};
+  background-color: ${(p) => p.theme.colors.secondaryDarker};
 `;
 
 // Navigation links
