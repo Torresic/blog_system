@@ -1,8 +1,15 @@
 import styled from "styled-components";
 import { AiOutlineLogout } from "react-icons/ai";
 import { SidebarLink } from "./SidebarLink";
+import { useState } from "react";
 
 export const Sidebar = () => {
+  const [ currentActiveLink, setActiveLink ] = useState<string | null>(null)
+
+  const onClickHandler = (activeLink: string) => {
+    return setActiveLink(activeLink) 
+  }
+
   return (
     <SidebarContainer>
       <SidebarUserContainer>
@@ -13,7 +20,7 @@ export const Sidebar = () => {
       </SidebarUserContainer>
       <Divider />
       <NavigationContainer>
-        <SidebarLink name="home" active={false} label="Dashboard" />
+        <SidebarLink name="home" active={currentActiveLink === 'home' ? true : false } label="Dashboard" onClickHandler={() => onClickHandler('home')}/>
         <LogoutContainer>
           <Divider />
           <AiOutlineLogout />
@@ -25,14 +32,18 @@ export const Sidebar = () => {
 
 const SidebarContainer = styled.div`
   height: 100%;
-  width: 7.5%;
+  width: min(7.5%, 100px);
   padding: ${(p) => `${p.theme.spacing.spacing16} 0`};
 
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  display: none;
 
   background: ${(p) => p.theme.colors.primary};
+
+  @media ${p => p.theme.breakpoints.width.laptopS} {
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+  }
 `;
 
 const NavigationContainer = styled.nav`
@@ -50,7 +61,7 @@ const LogoutContainer = styled.div`
   align-items: center;
   width: 100%;
   color: ${p => p.theme.colors.secondary};
-  font-size: 48px;
+  font-size: ${p => `clamp( ${p.theme.spacing.spacing24} , ${p.theme.spacing.spacing32} ,  ${p.theme.spacing.spacing32})`};
 `;
 
 // User profile information
